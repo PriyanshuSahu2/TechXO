@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { IoMdStar, IoIosHeartEmpty } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
 import { TbTruckDelivery } from "react-icons/tb";
 import { TfiReload } from "react-icons/tfi";
 const Product = () => {
+  const [itemCount, setItemCount] = useState(1);
+  const onItemIncrement = () => {
+
+    setItemCount(itemCount + 1);
+  }
+  const onItemDecrement = () => {
+    if (itemCount > 0) {
+      setItemCount(itemCount - 1)
+    }
+  }
   return (
     <main>
       <Navbar />
@@ -105,9 +115,9 @@ const Product = () => {
               <section className="flex items-center gap-4 ">
                 <span className="text-sm">Quantity: </span>
                 <section className="flex rounded border">
-                  <button className="h-10 px-2 border-e rounded-s text-center hover:bg-[#DB4444] hover:border-[#DB4444] hover:text-white "><FiMinus /></button>
-                  <button className="h-10 px-4  text-center hover:bg-[#DB4444] hover:border-[#DB4444] hover:text-white">1</button>
-                  <button className="h-10 px-3 rounded-e border-s text-center hover:bg-[#DB4444] hover:border-[#DB4444] hover:text-white">+</button>
+                  <button className="h-10 px-2 border-e rounded-s text-center hover:bg-[#DB4444] hover:border-[#DB4444] hover:text-white " onClick={onItemDecrement}><FiMinus /></button>
+                  <button className="h-10 px-4  text-center hover:bg-[#DB4444] hover:border-[#DB4444] hover:text-white">{itemCount}</button>
+                  <button className="h-10 px-3 rounded-e border-s text-center hover:bg-[#DB4444] hover:border-[#DB4444] hover:text-white" onClick={onItemIncrement}>+</button>
                 </section>
               </section>
               <section className="flex gap-4">

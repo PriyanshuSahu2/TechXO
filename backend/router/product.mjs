@@ -5,7 +5,7 @@ import { createProduct } from "../controller/product/createProduct.mjs";
 
 const router = express.Router();
 
-router.get("/", getProduct, createError);
+router.get("/:id", getProduct, createError);
 
 router.post("/", createProduct, createError);
 
