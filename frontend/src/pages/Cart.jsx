@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import CartItemCard from '../components/CartItemCard'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCartProducts } from '../redux/cartRedux'
 
 const Cart = () => {
+
+   const cartProducts = useSelector((state) => state.cart.products)
+
   return (
     <section >
       <Navbar />
@@ -16,11 +21,22 @@ const Cart = () => {
           </div>
         </section>
         <section>
-          <CartItemCard />
-          <CartItemCard />
-          <CartItemCard />
+
+          {cartProducts.map((data) => {
+           return <CartItemCard data={data}/>
+          })}
         </section>
 
+      </section>
+      <section className='flex px-24 '>
+        <div className='flex flex-1 gap-4 h-fit'>
+          <input type="text" placeholder='Coupon Code' className='border rounded px-2' />
+          <button className='bg-[#DB4444] text-white p-2 rounded  px-8'>Apply Coupon</button>
+        </div>
+        <div className='flex-1'>
+          <div className='w-[480px] border-[#000] border-2 h-52 rounded-lg'>
+          </div>
+        </div>
       </section>
     </section>
   )

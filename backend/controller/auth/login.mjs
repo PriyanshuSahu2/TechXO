@@ -3,8 +3,8 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 export const login = async (req, res, next) => {
   try {
-    const { emailOrUserName, password } = req.body;
-    const userInDB = await findUserByEmailOrUserName(emailOrUserName);
+    const { emailOrMobile, password } = req.body;
+    const userInDB = await findUserByEmailOrUserName(emailOrMobile);
 
     if (!userInDB) {
       return res.status(401).json({ message: "Authentication failed" });
@@ -19,7 +19,9 @@ export const login = async (req, res, next) => {
         .status(200)
         .json({ message: "Login successful", ...userData, accessToken });
     } else {
-      return res.status(401).json({ message: "Authentication failed" });
+      return res
+        .status(401)
+        .json({ status: 401, message: "Password does not match" });
     }
   } catch (err) {
     next(err);

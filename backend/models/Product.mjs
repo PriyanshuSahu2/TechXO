@@ -43,6 +43,10 @@ const ProductSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Reviews",
   },
+  totalReviews: {
+    type: Number,
+    default: 0,
+  },
   rating: {
     type: Number,
     default: 0,

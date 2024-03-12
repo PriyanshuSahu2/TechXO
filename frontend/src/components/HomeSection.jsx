@@ -4,6 +4,22 @@ import { IoMdStar } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
 const HomeSection = ({ title, items }) => {
+    const renderStars = (rating) => {
+        const filledStars = Math.floor(rating);
+        const emptyStars = 5 - filledStars;
+        const stars = [];
+
+        for (let i = 0; i < filledStars; i++) {
+            stars.push(<IoMdStar key={i} color="#FFAD33" />);
+        }
+
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<IoMdStar key={filledStars + i} color="#BFBFBF" />);
+        }
+
+        return stars;
+    };
+
     return (
         <section className='px-8 my-2 h-fit flex flex-col gap-4 items-center w-full'>
             <div className='flex justify-between items-center w-full'>
@@ -21,26 +37,21 @@ const HomeSection = ({ title, items }) => {
             </div>
             <div className='flex gap-5 w-full'>
                 {items?.map((item, index) => {
-                    return (<Link to={"/product"} className='flex flex-col items-center w-[200px] h-[200px]'>
-                        <figure className='bg-[#F5F5F5] w-full p-5'>  <img src={item.image} className='object-fill w-[150px] h-[100px]' alt="Television" /></figure>
+                    return (<Link to={`/product/${item._id}`} key={item._id} className='flex flex-col items-center w-[200px] h-[200px]'>
+                        <figure className='bg-[#F5F5F5] w-full p-5'>  <img src={item.image[0]} className='object-fill w-[150px] h-[100px]' alt="Television" /></figure>
                         <figcaption className='flex flex-col flex-wrap gap-0.5 justify-between w-full px-2 mt-2'>
                             <span className='text-xs overflow-clip'>
-                                {item.title}
+                                {item.name}
                             </span>
                             <span className='text-xs font-semibold text-[#DB4444]'>
-                                ${item.price}
+                                ${item.varient ? item?.varient[0]?.price : 0}
                             </span>
                             <section className="flex text-center items-center gap-2 py-1">
                                 <div className="flex ">
-                                    <IoMdStar color="#FFAD33" />
-                                    <IoMdStar color="#FFAD33" />
-                                    <IoMdStar color="#FFAD33" />
-                                    <IoMdStar color="#FFAD33" />
-                                    <IoMdStar color="#BFBFBF" />
+                                    {renderStars(item.rating)}
                                 </div>
-
                                 <div>
-                                    <span className="text-xs  text-[#7F7F7F]">(150)</span>
+                                    <span className="text-xs  text-[#7F7F7F]">({item.totalReviews} reviews)</span>
                                 </div>
 
                             </section>

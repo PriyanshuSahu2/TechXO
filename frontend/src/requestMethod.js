@@ -15,7 +15,8 @@ userRequest.interceptors.request.use(
   (config) => {
     const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
     const currentUser = user && JSON.parse(user).currentUser;
-    const TOKEN = currentUser?.accessToken;
+    // const TOKEN = currentUser?.accessToken;
+    const TOKEN = localStorage.getItem("UserToken");
     config.headers["token"] = `Bearer ${TOKEN}`;
     return config;
   },

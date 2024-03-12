@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import authRouter from "./router/auth.mjs";
 import productRouter from "./router/product.mjs";
 import imageRouter from "./router/imageUpload.mjs";
-
+import cartRouter from "./router/cart.mjs";
 const app = express();
 dotenv.config();
 const PORT = 5000;
@@ -19,6 +19,7 @@ app.use(express.json());
 app.use("/api/auth", authRouter.router);
 app.use("/api/product", productRouter.router);
 app.use("/api/upload", imageRouter.router);
+app.use("/api/cart", cartRouter.router);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
