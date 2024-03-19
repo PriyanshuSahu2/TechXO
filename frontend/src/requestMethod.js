@@ -17,7 +17,7 @@ userRequest.interceptors.request.use(
     const currentUser = user && JSON.parse(user).currentUser;
     // const TOKEN = currentUser?.accessToken;
     const TOKEN = localStorage.getItem("UserToken");
-    config.headers["token"] = `Bearer ${TOKEN}`;
+    config.headers["authorization"] = `Bearer ${TOKEN}`;
     return config;
   },
   (error) => {

@@ -7,7 +7,7 @@ import { publicRequest } from '../requestMethod';
 import { getCartProducts } from '../redux/cartRedux';
 import { useDispatch } from 'react-redux';
 const Home = () => {
-  
+
 
     const images = [
         "/assets/mbanner1.jpg",
@@ -24,7 +24,7 @@ const Home = () => {
             console.error(error)
         }
     }
-   
+
     useEffect(() => {
         fetchProducts()
     }, [])

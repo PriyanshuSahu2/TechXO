@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Navbar from '../components/Navbar'
 import CartItemCard from '../components/CartItemCard'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCartProducts } from '../redux/cartRedux'
+import { useSelector } from 'react-redux'
+
 
 const Cart = () => {
 
-   const cartProducts = useSelector((state) => state.cart.products)
-
+  const cartProducts = useSelector((state) => state.cart.products)
   return (
     <section >
       <Navbar />
@@ -20,10 +19,10 @@ const Cart = () => {
             <div className='flex-1'>Subtotal</div>
           </div>
         </section>
-        <section>
+        <section className='flex flex-col gap-4'>
 
-          {cartProducts.map((data) => {
-           return <CartItemCard data={data}/>
+          {cartProducts.map((data, index) => {
+            return <CartItemCard data={data} index={index} key={data._id} />
           })}
         </section>
 
